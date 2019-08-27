@@ -1,0 +1,6 @@
+/*select 
+    iif(isnumeric((select N  from BST where P IS NULL))=1,'Root',iif(isnumeric((select a1.N from BST as a1, BST as a2 where a1.N=a2.P))=1,'Inner','Leaf')) 
+;*/
+
+SELECT N, iIF(P IS NULL,'Root',iIF((SELECT COUNT(*) FROM BST WHERE P=B.N)>0,'Inner','Leaf')) FROM BST AS B ORDER BY N;
+--select a1.N,a2.P from BST as a1, BST as a2 where a1.N=a2.P;
