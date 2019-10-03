@@ -1,0 +1,61 @@
+/*
+Multiple Tables with REBU
+
+Let’s practice what we learned about joins by combining rows from different tables.
+
+Suppose you are a data analyst at REBU, a ridesharing platform. For a project, you were given three tables:
+
+    trips - trips information
+    riders - users data
+    cars - autonomous cars
+
+Have fun!
+
+*/
+
+SELECT * FROM trips;
+SELECT * FROM riders;
+SELECT * FROM cars;
+
+select id from trips limit 10;
+select id from riders limit 10;
+select id from cars limit 10;
+
+select *
+from riders
+cross join cars
+limit 10;
+
+select riders.username, count(trips.id)
+from trips
+left join riders
+on riders.id=trips.rider_id
+group by 1;
+
+select cars.model, cars.OS, count(trips.car_id)
+from cars
+join trips
+on cars.id=trips.car_id
+group by cars.model;
+
+select *
+from riders
+union all
+select *
+from riders2;
+
+select avg(cost)
+from trips;
+
+select username
+from riders
+where total_trips<500;
+
+select count(status)
+from cars
+where status='active';
+
+select *
+from cars
+order by total_trips desc
+limit 2;
